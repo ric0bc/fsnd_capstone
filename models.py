@@ -30,9 +30,9 @@ class Movie(db.Model):
   id = Column(Integer, primary_key=True)
   title = Column(String)
   release_date = Column(DateTime)
-  actors = db.relationship('Actor_Movie', backref='Movie', lazy='dynamic')
+  actors = db.relationship('Actor', secondary='Actor_Movie', backref='Movie', lazy='dynamic')
 
-  def __init__(self, title, release_date, actors):
+  def __init__(self, title, release_date, actors=""):
     self.title = title
     self.release_date = release_date
     self.actors = actors
@@ -43,6 +43,17 @@ class Movie(db.Model):
       'title': self.title,
       'release_date': self.release_date
     }
+
+  def insert(self):
+    db.session.add(self)
+    db.session.commit()
+
+  def delete(self):
+    db.session.delete(self)
+    db.session.commit()
+
+  def update(self):
+    db.session.commit()
 
 '''
 Actor
@@ -55,7 +66,7 @@ class Actor(db.Model):
   name = Column(String)
   age = Column(Integer)
   gender = Column(String)
-  movies = db.relationship('Actor_Movie', backref='Actor', lazy='dynamic')
+  movies = db.relationship('Movie', secondary='Actor_Movie', backref='Actor', lazy='dynamic')
 
   def __init__(self, name, age, gender, movies):
     self.name = name
@@ -75,9 +86,7 @@ class Actor(db.Model):
 Actor_Movie
 Many-To-Many Relation
 '''
-class Actor_Movie(db.Model):  
-  __tablename__ = 'Actor_Movie'
-
-  id = Column(Integer, primary_key=True)
+Actor_Movie = db.Table('Actor_Movie',
   Column('actor_id', Integer, ForeignKey('Actor.id'), primary_key=True),
   Column('movie_id', Integer, ForeignKey('Movie.id'), primary_key=True)
+)
