@@ -1,6 +1,6 @@
 import os
 from flask import Flask, jsonify, abort, request
-from models import setup_db, Actor, Movie
+from models import setup_db, Actor, Movie, Actor_Movie
 from flask_cors import CORS
 
 def create_app(test_config=None):
@@ -18,7 +18,7 @@ def create_app(test_config=None):
 
     @app.route("/movies")
     def get_movies():
-        movies = list(map(Movie.format, Movie.query.all()))
+        movies = list(map(Movie.format, Movie.query.join(Actor_Movie).all()))
         result = {
             'success': True,
             'movies': movies
