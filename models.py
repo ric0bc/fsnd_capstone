@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, create_engine
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
 
@@ -16,26 +16,68 @@ def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
+    db.drop_all()
     db.create_all()
 
 
 '''
-Person
+Movie
 Have title and release year
 '''
-class Person(db.Model):  
-  __tablename__ = 'People'
+class Movie(db.Model):  
+  __tablename__ = 'Movie'
+
+  id = Column(Integer, primary_key=True)
+  title = Column(String)
+  release_date = Column(DateTime)
+  actors = db.relationship('Actor_Movie', backref='Movie', lazy='dynamic')
+
+  def __init__(self, title, release_date, actors):
+    self.title = title
+    self.release_date = release_date
+    self.actors = actors
+
+  def format(self):
+    return {
+      'id': self.id,
+      'title': self.title,
+      'release_date': self.release_date
+    }
+
+'''
+Actor
+Have name, age and gender
+'''
+class Actor(db.Model):  
+  __tablename__ = 'Actor'
 
   id = Column(Integer, primary_key=True)
   name = Column(String)
-  catchphrase = Column(String)
+  age = Column(Integer)
+  gender = Column(String)
+  movies = db.relationship('Actor_Movie', backref='Actor', lazy='dynamic')
 
-  def __init__(self, name, catchphrase=""):
+  def __init__(self, name, age, gender, movies):
     self.name = name
-    self.catchphrase = catchphrase
+    self.age = age
+    self.gender = gender
+    self.movies = movies
 
   def format(self):
     return {
       'id': self.id,
       'name': self.name,
-      'catchphrase': self.catchphrase}
+      'age': self.age,
+      'gender': self.gender
+    }
+
+'''
+Actor_Movie
+Many-To-Many Relation
+'''
+class Actor_Movie(db.Model):  
+  __tablename__ = 'Actor_Movie'
+
+  id = Column(Integer, primary_key=True)
+  Column('actor_id', Integer, ForeignKey('Actor.id'), primary_key=True),
+  Column('movie_id', Integer, ForeignKey('Movie.id'), primary_key=True)
