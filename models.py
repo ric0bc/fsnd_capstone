@@ -68,7 +68,7 @@ class Actor(db.Model):
   gender = Column(String)
   movies = db.relationship('Movie', secondary='Actor_Movie', backref='Actor', lazy='dynamic')
 
-  def __init__(self, name, age, gender, movies):
+  def __init__(self, name, age, gender, movies=""):
     self.name = name
     self.age = age
     self.gender = gender
@@ -81,6 +81,17 @@ class Actor(db.Model):
       'age': self.age,
       'gender': self.gender
     }
+
+  def insert(self):
+    db.session.add(self)
+    db.session.commit()
+
+  def delete(self):
+    db.session.delete(self)
+    db.session.commit()
+
+  def update(self):
+    db.session.commit()
 
 '''
 Actor_Movie

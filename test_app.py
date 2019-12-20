@@ -129,6 +129,82 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data["message"], 'unprocessable')
 
+    def test_get_actors(self):
+        res = self.client().get('/actors')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["success"], True)
+
+    def test_get_actor(self):
+        self.client().post('/actors', json={
+            'name': 'New Actor',
+            'age': 59,
+            'gender': 'woman'
+        })
+        res = self.client().get('/actors/1')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["success"], True)
+        self.assertTrue(data["actor"])
+
+    def test_post_actor(self):
+        res = self.client().post('/actors', json={
+            'name': 'New Actor',
+            'age': 30,
+            'gender': 'man'
+        })
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertEqual(data['message'], 'New Actor stored')
+
+    def test_post_actor_with_movie(self):
+        res = self.client().post('/actors', json={
+            'name': 'New Actor',
+            'age': 30,
+            'gender': 'man',
+            'movie': {
+                'title': 'New testing Movie',
+                'release_date': '2019-12-20 10:19:55'
+            }
+        })
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertEqual(data['message'], 'New Actor stored')
+
+    def test_delete_actor(self):
+        self.client().post('/actors', json={
+            'name': 'New Actor',
+            'age': 30,
+            'gender': 'man'
+        })
+        res = self.client().delete('/actors/1')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+
+    def test_update_actor(self):
+        self.client().post('/actors', json={
+            'name': 'New Actor',
+            'age': 30,
+            'gender': 'man'
+        })
+        res = self.client().patch('/actors/1', json={
+            'name': 'New Actor Updated',
+            'age': 31,
+            'gender': 'woman'
+        })
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+
 # Make the tests conveniently executable
 if __name__ == "__main__":
     unittest.main()
