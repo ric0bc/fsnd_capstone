@@ -1,0 +1,385 @@
+{
+	"info": {
+		"_postman_id": "c4df51cf-9876-4b96-8d48-f274dae10545",
+		"name": "capstone_auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "assistant",
+			"item": [
+				{
+					"name": "/movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8e573010-0e75-4531-95d0-61af1c616f8f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains movies array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.movies).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik9FRTRSamd5TWpOR1JURTFNMFE0TWtVNFFVWXpSRGsyTXpnek1EUTNRVGhETmtGRE5UVXdNUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1mdnh3b3YtMy5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWRmY2QxY2E0NDJkNGMwZWI5ZjY1MjNmIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiaWF0IjoxNTc2ODU0MTY1LCJleHAiOjE1NzY5NDA1NjUsImF6cCI6IkpRdlFoTXp3bUVTWEhGMnRid3dGeHF2Wk9OTjRBbFlHIiwiZ3R5IjoicGFzc3dvcmQiLCJwZXJtaXNzaW9ucyI6WyJyZWFkOmFjdG9ycyIsInJlYWQ6bW92aWVzIl19.KphT3pTSC7y5BmgpoZaw4y62LblchbgGRn1Wrg87eSOJuOnI2Fa6zKr6UkfXsWKjxBQSvn7PKAVRanxKSVfj3jmO3lyErr0uARYHrO5kMjVL5hugTIuWQ8O062szBA2OzCFjPSnHdnYc8JF84DdUz56iNxJafc1rXy2OoinWjqgfNX-jLnRaCXc_G9cfgVvwSyvGNYMAcej8OMwWkL9IHBYgGxSh87GvHYJHfnbB9t-_HtE-vYY4IKfAe09x5CniZIAQOKlbhXZeNSbsRGeIpBUMNasON4pH-MJZuROTPp3e-GYagHHSGUvfymd62qWmIknHMrofmCGuBAP-6uD-PA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/movies",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0465854d-af92-462b-996b-4669fabeca28",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik9FRTRSamd5TWpOR1JURTFNMFE0TWtVNFFVWXpSRGsyTXpnek1EUTNRVGhETmtGRE5UVXdNUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1mdnh3b3YtMy5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWRmY2QxY2E0NDJkNGMwZWI5ZjY1MjNmIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiaWF0IjoxNTc2ODU0MTY1LCJleHAiOjE1NzY5NDA1NjUsImF6cCI6IkpRdlFoTXp3bUVTWEhGMnRid3dGeHF2Wk9OTjRBbFlHIiwiZ3R5IjoicGFzc3dvcmQiLCJwZXJtaXNzaW9ucyI6WyJyZWFkOmFjdG9ycyIsInJlYWQ6bW92aWVzIl19.KphT3pTSC7y5BmgpoZaw4y62LblchbgGRn1Wrg87eSOJuOnI2Fa6zKr6UkfXsWKjxBQSvn7PKAVRanxKSVfj3jmO3lyErr0uARYHrO5kMjVL5hugTIuWQ8O062szBA2OzCFjPSnHdnYc8JF84DdUz56iNxJafc1rXy2OoinWjqgfNX-jLnRaCXc_G9cfgVvwSyvGNYMAcej8OMwWkL9IHBYgGxSh87GvHYJHfnbB9t-_HtE-vYY4IKfAe09x5CniZIAQOKlbhXZeNSbsRGeIpBUMNasON4pH-MJZuROTPp3e-GYagHHSGUvfymd62qWmIknHMrofmCGuBAP-6uD-PA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"New Movie\",\n    \"actor\": {\n    \t\"name\": \"test Actor\",\n    \t\"age\": 40,\n    \t\"gender\": \"woman\"\n    }\n}"
+						},
+						"url": {
+							"raw": "localhost:5000/movies",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik9FRTRSamd5TWpOR1JURTFNMFE0TWtVNFFVWXpSRGsyTXpnek1EUTNRVGhETmtGRE5UVXdNUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1mdnh3b3YtMy5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWRmY2QxY2E0NDJkNGMwZWI5ZjY1MjNmIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiaWF0IjoxNTc2ODU0MTY1LCJleHAiOjE1NzY5NDA1NjUsImF6cCI6IkpRdlFoTXp3bUVTWEhGMnRid3dGeHF2Wk9OTjRBbFlHIiwiZ3R5IjoicGFzc3dvcmQiLCJwZXJtaXNzaW9ucyI6WyJyZWFkOmFjdG9ycyIsInJlYWQ6bW92aWVzIl19.KphT3pTSC7y5BmgpoZaw4y62LblchbgGRn1Wrg87eSOJuOnI2Fa6zKr6UkfXsWKjxBQSvn7PKAVRanxKSVfj3jmO3lyErr0uARYHrO5kMjVL5hugTIuWQ8O062szBA2OzCFjPSnHdnYc8JF84DdUz56iNxJafc1rXy2OoinWjqgfNX-jLnRaCXc_G9cfgVvwSyvGNYMAcej8OMwWkL9IHBYgGxSh87GvHYJHfnbB9t-_HtE-vYY4IKfAe09x5CniZIAQOKlbhXZeNSbsRGeIpBUMNasON4pH-MJZuROTPp3e-GYagHHSGUvfymd62qWmIknHMrofmCGuBAP-6uD-PA",
+						"type": "string"
+					}
+				]
+			},
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "director",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "producer",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "/movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d077a141-7da3-43b3-aceb-95da1d09fd4e",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/movies",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b43e4e16-c419-43ca-a232-44348fd430a6",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "161b89a6-7e8d-4904-893b-2caa0d7a9d40",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Ricky\",\n\t\"age\": 18,\n\t\"gender\": \"Man\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5000/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors (with movie)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b33285d-e744-45ba-8130-b7d7c3b79fd3",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Riicky\",\n\t\"age\": 25,\n\t\"gender\": \"man\",\n\t\"movie\": {\n\t\t\"title\": \"Ricky movie\",\n\t\t\"release_date\": \"2019-12-20 10:19:55\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "localhost:5000/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f3c143d7-1fa9-4ac8-bed0-b366309e432c",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"New Movie 2\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5000/movies",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies (with actor)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a223dd85-0f31-4a87-90a6-35f03415886a",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"New Movie\",\n    \"actor\": {\n    \t\"name\": \"test Actor\",\n    \t\"age\": 40,\n    \t\"gender\": \"woman\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/movies",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
