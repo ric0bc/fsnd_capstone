@@ -17,6 +17,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.database_name = "capstone_test"
         self.database_path = "postgresql://{}/{}".format('localhost:5432', self.database_name)
         setup_db(self.app, self.database_path)
+        self.headers = {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik9FRTRSamd5TWpOR1JURTFNMFE0TWtVNFFVWXpSRGsyTXpnek1EUTNRVGhETmtGRE5UVXdNUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1mdnh3b3YtMy5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWRmY2QxY2E0NDJkNGMwZWI5ZjY1MjNmIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiaWF0IjoxNTc2ODU0MTY1LCJleHAiOjE1NzY5NDA1NjUsImF6cCI6IkpRdlFoTXp3bUVTWEhGMnRid3dGeHF2Wk9OTjRBbFlHIiwiZ3R5IjoicGFzc3dvcmQiLCJwZXJtaXNzaW9ucyI6WyJyZWFkOmFjdG9ycyIsInJlYWQ6bW92aWVzIl19.KphT3pTSC7y5BmgpoZaw4y62LblchbgGRn1Wrg87eSOJuOnI2Fa6zKr6UkfXsWKjxBQSvn7PKAVRanxKSVfj3jmO3lyErr0uARYHrO5kMjVL5hugTIuWQ8O062szBA2OzCFjPSnHdnYc8JF84DdUz56iNxJafc1rXy2OoinWjqgfNX-jLnRaCXc_G9cfgVvwSyvGNYMAcej8OMwWkL9IHBYgGxSh87GvHYJHfnbB9t-_HtE-vYY4IKfAe09x5CniZIAQOKlbhXZeNSbsRGeIpBUMNasON4pH-MJZuROTPp3e-GYagHHSGUvfymd62qWmIknHMrofmCGuBAP-6uD-PA'}
         
         with self.app.app_context():
             self.db = SQLAlchemy()
@@ -36,7 +37,7 @@ class CapstoneTestCase(unittest.TestCase):
 
     def test_get_movies(self):
         """Test _____________ """
-        res = self.client().get('/movies')
+        res = self.client().get('/movies', headers=self.headers)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)

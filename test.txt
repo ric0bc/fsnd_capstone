@@ -1,0 +1,32 @@
+curl --request POST \
+  --url 'https://dev-fvxwov-3.eu.auth0.com/oauth/token' \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data grant_type=http://auth0.com/oauth/grant-type/password-realm \
+  --data username=assistant@capstone.com \
+  --data password=Assistant123 \
+  --data audience=http://localhost:5000 \
+  --data 'client_id=JQvQhMzwmESXHF2tbwwFxqvZONN4AlYG' \
+  --data client_secret=_ta8FNs1G4DeOUqq933GLeiJ82lUxNoHatihjImAtWq2sNFQYhEe1q0QC2qFAHiv \
+  --data realm=Username-Password-Authentication
+
+  curl --request POST \
+  --url 'https://dev-fvxwov-3.eu.auth0.com/oauth/token' \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data grant_type=http://auth0.com/oauth/grant-type/password-realm \
+  --data username=director@capstone.com \
+  --data password=Director123 \
+  --data audience=http://localhost:5000 \
+  --data 'client_id=JQvQhMzwmESXHF2tbwwFxqvZONN4AlYG' \
+  --data client_secret=_ta8FNs1G4DeOUqq933GLeiJ82lUxNoHatihjImAtWq2sNFQYhEe1q0QC2qFAHiv \
+  --data realm=Username-Password-Authentication
+ 
+  curl --request POST \
+  --url 'https://dev-fvxwov-3.eu.auth0.com/oauth/token' \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data grant_type=http://auth0.com/oauth/grant-type/password-realm \
+  --data username=producer@capstone.com \
+  --data password=Producer123 \
+  --data audience=http://localhost:5000 \
+  --data 'client_id=JQvQhMzwmESXHF2tbwwFxqvZONN4AlYG' \
+  --data client_secret=_ta8FNs1G4DeOUqq933GLeiJ82lUxNoHatihjImAtWq2sNFQYhEe1q0QC2qFAHiv \
+  --data realm=Username-Password-Authentication

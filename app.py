@@ -1,7 +1,9 @@
 import os
 from flask import Flask, jsonify, abort, request
 from models import setup_db, Actor, Movie, Actor_Movie
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
+
+from auth.auth import AuthError, requires_auth
 
 def create_app(test_config=None):
 
@@ -10,6 +12,7 @@ def create_app(test_config=None):
     CORS(app)
 
     @app.route('/')
+    @cross_origin(headers=["Content-Type", "Authorization"])
     def get_greeting():
         excited = True
         greeting = "Hello" 
@@ -17,7 +20,9 @@ def create_app(test_config=None):
         return greeting
 
     @app.route("/movies")
-    def get_movies():
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @requires_auth('read:movies')
+    def get_movies(token):
         movies = list(map(Movie.format, Movie.query.all()))
         result = {
             'success': True,
@@ -267,6 +272,13 @@ def create_app(test_config=None):
         "error": 500,
         "message": "Internal server error"
         }), 500
+
+    @app.errorhandler(AuthError)
+    def handle_auth_error(ex):
+        response = jsonify(ex.error)
+        response.status_code = ex.status_code
+        return response
+
 
     return app
 
