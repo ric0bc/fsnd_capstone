@@ -83,10 +83,10 @@ def create_app(test_config=None):
 
     @app.route('/movies/<int:movie_id>', methods=['DELETE'])
     def delete_movie(movie_id):
-
+        
         try:
             movie = Movie.query.get(movie_id)
-
+            
             if movie is None:
                 abort(404)
 
