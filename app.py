@@ -31,7 +31,9 @@ def create_app(test_config=None):
         return jsonify(result)
     
     @app.route("/movies/<int:movie_id>")
-    def get_single_movie(movie_id):
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @requires_auth('read:movie-detail')
+    def get_single_movie(token, movie_id):
         try:
             movie = Movie.query.get(movie_id)
 
@@ -50,7 +52,9 @@ def create_app(test_config=None):
             abort(422)
 
     @app.route("/movies", methods=['POST'])
-    def store_movies():
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @requires_auth('post:movies')
+    def store_movies(token):
         body = request.get_json()
 
         try:
@@ -82,7 +86,9 @@ def create_app(test_config=None):
             abort(422)
 
     @app.route('/movies/<int:movie_id>', methods=['DELETE'])
-    def delete_movie(movie_id):
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @requires_auth('delete:movies')
+    def delete_movie(token, movie_id):
         
         try:
             movie = Movie.query.get(movie_id)
@@ -100,7 +106,9 @@ def create_app(test_config=None):
             abort(422)
 
     @app.route("/movies/<int:movie_id>", methods=['PATCH'])
-    def update_movie(movie_id):
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @requires_auth('patch:movies')
+    def update_movie(token, movie_id):
         body = request.get_json()
 
         try:
@@ -126,11 +134,15 @@ def create_app(test_config=None):
             abort(422)
 
     @app.route('/movies/<int:movie_id>', methods=['POST'])
-    def not_allowed(movie_id):
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @requires_auth('post:movies')
+    def not_allowed(token, movie_id):
         abort(405)
 
     @app.route("/actors")
-    def get_actors():
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @requires_auth('read:actors')
+    def get_actors(token):
         actors = list(map(Actor.format, Actor.query.all()))
         result = {
             'success': True,
@@ -139,7 +151,9 @@ def create_app(test_config=None):
         return jsonify(result)
 
     @app.route("/actors/<int:actor_id>")
-    def get_single_actor(actor_id):
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @requires_auth('read:actors-detail')
+    def get_single_actor(token, actor_id):
         try:
             actor = Actor.query.get(actor_id)
 
@@ -159,7 +173,9 @@ def create_app(test_config=None):
             abort(422)
 
     @app.route("/actors", methods=['POST'])
-    def store_actor():
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @requires_auth('post:actors')
+    def store_actor(token):
         body = request.get_json()
         
         try:
@@ -191,8 +207,10 @@ def create_app(test_config=None):
             abort(422)
 
     @app.route('/actors/<int:actor_id>', methods=['DELETE'])
-    def delete_actor(actor_id):
-
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @requires_auth('delete:actors')
+    def delete_actor(token, actor_id):
+        print(actor_id)
         try:
             actor = Actor.query.get(actor_id)
 
@@ -209,7 +227,9 @@ def create_app(test_config=None):
             abort(422)
 
     @app.route("/actors/<int:actor_id>", methods=['PATCH'])
-    def update_actor(actor_id):
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @requires_auth('patch:actors')
+    def update_actor(token, actor_id):
         body = request.get_json()
 
         try:
