@@ -45,6 +45,47 @@ The application is hosted on heroku under the url:
 
 ### Getting access tokens for testing
 In the file [test.txt](./test.txt) you can find some curl commands to get an valid access token for each Role.
+
+**Get access token for assistant**
+```
+curl --request POST \
+  --url 'https://dev-fvxwov-3.eu.auth0.com/oauth/token' \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data grant_type=http://auth0.com/oauth/grant-type/password-realm \
+  --data username=assistant@capstone.com \
+  --data password=Assistant123 \
+  --data audience=http://localhost:5000 \
+  --data 'client_id=JQvQhMzwmESXHF2tbwwFxqvZONN4AlYG' \
+  --data client_secret=_ta8FNs1G4DeOUqq933GLeiJ82lUxNoHatihjImAtWq2sNFQYhEe1q0QC2qFAHiv \
+  --data realm=Username-Password-Authentication
+```
+**Get access token for director**
+```
+curl --request POST \
+  --url 'https://dev-fvxwov-3.eu.auth0.com/oauth/token' \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data grant_type=http://auth0.com/oauth/grant-type/password-realm \
+  --data username=director@capstone.com \
+  --data password=Director123 \
+  --data audience=http://localhost:5000 \
+  --data 'client_id=JQvQhMzwmESXHF2tbwwFxqvZONN4AlYG' \
+  --data client_secret=_ta8FNs1G4DeOUqq933GLeiJ82lUxNoHatihjImAtWq2sNFQYhEe1q0QC2qFAHiv \
+  --data realm=Username-Password-Authentication
+```
+**Get access token for producer**
+```
+curl --request POST \
+  --url 'https://dev-fvxwov-3.eu.auth0.com/oauth/token' \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data grant_type=http://auth0.com/oauth/grant-type/password-realm \
+  --data username=producer@capstone.com \
+  --data password=Producer123 \
+  --data audience=http://localhost:5000 \
+  --data 'client_id=JQvQhMzwmESXHF2tbwwFxqvZONN4AlYG' \
+  --data client_secret=_ta8FNs1G4DeOUqq933GLeiJ82lUxNoHatihjImAtWq2sNFQYhEe1q0QC2qFAHiv \
+  --data realm=Username-Password-Authentication
+```
+
 The secret key and the login credentials are for testing purposes only and will be deleted after this project ends.
 For testing the RBAC controls, there is also an [postman_collection JSON](./capstone_auth.postman_collection.json) file. You can import it in your postman and maybe you need to change the authorization tokens.
 
