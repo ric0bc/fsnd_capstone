@@ -37,16 +37,26 @@ For testing the RBAC controls, there is also an [postman_collection JSON](./caps
 For all the endpoints you need to pass a valid access token to use the endpoints.
 ### GET
 Get all movies
+
 `localhost:5000/movies`
+
 Get all actors
+
 `localhost:5000/actors`
+
 Get one movie
+
 `localhost:5000/movies/{{ id }}`
+
 Get one actor
+
 `localhost:5000/actors/{{ id }}`
+
 ### POST
 Create movie
+
 `localhost:5000/movies`
+
 example of the body
 ```
 {
@@ -56,6 +66,7 @@ example of the body
 ```
 ### Create actor
 `localhost:5000/actors`
+
 example of the body
 ```
 {
@@ -66,14 +77,22 @@ example of the body
 ```
 ### PATCH
 Update movie
+
 `localhost:5000/movies/{{ id }}`
+
 Update actor
+
 `localhost:5000/actors/{{ id }}`
+
 ### DELETE
 Delete a movie
+
 `localhost:5000/movies/{{ id }}`
+
 Delete a actor
+
 `localhost:5000/actors/{{ id }}`
+
 
 ### ERRORS
 **422** : unprocessable
