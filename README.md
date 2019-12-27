@@ -5,14 +5,23 @@ You can create, delete, update and read movies and actors.
 The endpoints are not publicly (without access token) accessible.
 There are 3 authorization groups:
 1. Casting Assistant
+
    Can view actors and movies
+
 2. Casting Director
+   
    All permissions a Casting Assistant has and…
+
    Add or delete an actor from the database
+
    Modify actors or movies
+
 3. Executibe Producer
+
    All permissions a Casting Director has and…
+
    Add or delete a movie from the database
+
 
 For testing the endpoints, you have to get an access token.
 
@@ -96,7 +105,11 @@ Delete a actor
 
 ### ERRORS
 **422** : unprocessable
+
 **405** : method not allowed
+
 **500** : Internal server error
+
 **404** : Not found
+
 **401** : Auth error
