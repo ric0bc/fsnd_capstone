@@ -31,11 +31,17 @@ Install the requirements
 pip install -r requirements.txt
 ```
 
+You also need to configure your database path in the models.py file
+
 Run the development server
 ```
 ./setup.sh
 flask run  --reload
 ```
+## Live application
+The application is hosted on heroku under the url:
+
+`https://fsndcapstone.herokuapp.com/`
 
 ### Getting access tokens for testing
 In the file [test.txt](./test.txt) you can find some curl commands to get an valid access token for each Role.
@@ -44,6 +50,9 @@ For testing the RBAC controls, there is also an [postman_collection JSON](./caps
 
 ## Endpoints
 For all the endpoints you need to pass a valid access token to use the endpoints.
+
+To test the live application, replace `localhost:5000` with `https://fsndcapstone.herokuapp.com/`
+
 ### GET
 Get all movies
 
