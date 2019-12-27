@@ -95,7 +95,9 @@ For all the endpoints you need to pass a valid access token to use the endpoints
 To test the live application, replace `localhost:5000` with `https://fsndcapstone.herokuapp.com/`
 
 ### GET
-Get all movies
+
+
+**Get all movies**
 
 `localhost:5000/movies`
 
@@ -113,7 +115,8 @@ Get all movies
 }
 ```
 
-Get all actors
+
+**Get all actors**
 
 `localhost:5000/actors`
 
@@ -132,7 +135,8 @@ Get all actors
 }
 ```
 
-Get one movie
+
+**Get one movie**
 
 `localhost:5000/movies/1`
 
@@ -148,7 +152,8 @@ Get one movie
 }
 ```
 
-Get one actor
+
+**Get one actor**
 
 `localhost:5000/actors/2`
 
@@ -166,7 +171,8 @@ Get one actor
 ```
 
 ### POST
-Create movie
+
+**Create movie**
 
 `localhost:5000/movies`
 
@@ -185,7 +191,10 @@ example of the body
     "success": true
 }
 ```
-### Create actor
+
+
+**Create actor**
+
 `localhost:5000/actors`
 
 example of the body
@@ -205,7 +214,8 @@ example of the body
 }
 ```
 ### PATCH
-Update movie
+
+**Update movie**
 
 `localhost:5000/movies/1`
 
@@ -217,7 +227,8 @@ Update movie
 }
 ```
 
-Update actor
+
+**Update actor**
 
 `localhost:5000/actors/1`
 
@@ -229,9 +240,10 @@ Update actor
 }
 ```
 ### DELETE
-Delete a movie
 
-`localhost:5000/movies/{{ id }}`
+**Delete a movie**
+
+`localhost:5000/movies/1`
 
 **Response:**
 ```
@@ -241,9 +253,10 @@ Delete a movie
 }
 ```
 
-Delete a actor
 
-`localhost:5000/actors/{{ id }}`
+**Delete a actor**
+
+`localhost:5000/actors/1`
 
 **Response:**
 ```
