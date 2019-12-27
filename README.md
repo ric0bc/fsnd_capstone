@@ -58,17 +58,71 @@ Get all movies
 
 `localhost:5000/movies`
 
+**Response:**
+```
+{
+    "movies": [
+        {
+            "id": 1,
+            "release_date": "Fri, 20 Dec 2019 10:19:55 GMT",
+            "title": "New Movie"
+        }
+    ],
+    "success": true
+}
+```
+
 Get all actors
 
 `localhost:5000/actors`
 
+**Response:**
+```
+{
+    "actors": [
+        {
+            "age": 18,
+            "gender": "Man",
+            "id": 1,
+            "name": "Test name"
+        }
+    ],
+    "success": true
+}
+```
+
 Get one movie
 
-`localhost:5000/movies/{{ id }}`
+`localhost:5000/movies/1`
+
+**Response:**
+```
+{
+    "movie": {
+        "id": 1,
+        "release_date": "Fri, 20 Dec 2019 10:19:55 GMT",
+        "title": "New Movie"
+    },
+    "success": true
+}
+```
 
 Get one actor
 
-`localhost:5000/actors/{{ id }}`
+`localhost:5000/actors/2`
+
+**Response:**
+```
+{
+    "actor": {
+        "age": 18,
+        "gender": "Man",
+        "id": 2,
+        "name": "Test name"
+    },
+    "success": true
+}
+```
 
 ### POST
 Create movie
@@ -82,6 +136,14 @@ example of the body
     "release_date": "2019-12-20 10:19:55"
 }
 ```
+
+**Response:**
+```
+{
+    "message": "New Movie stored",
+    "success": true
+}
+```
 ### Create actor
 `localhost:5000/actors`
 
@@ -93,23 +155,62 @@ example of the body
 	"gender": "Man"
 }
 ```
+
+**Response:**
+```
+{
+    "message": "New Actor stored",
+    "success": true
+}
+```
 ### PATCH
 Update movie
 
-`localhost:5000/movies/{{ id }}`
+`localhost:5000/movies/1`
+
+**Response:**
+```
+{
+    "message": "1 Movie ID updated",
+    "success": true
+}
+```
 
 Update actor
 
-`localhost:5000/actors/{{ id }}`
+`localhost:5000/actors/1`
 
+**Response:**
+```
+{
+    "message": "1 Actor ID updated",
+    "success": true
+}
+```
 ### DELETE
 Delete a movie
 
 `localhost:5000/movies/{{ id }}`
 
+**Response:**
+```
+{
+    "message": "1 Movie ID deleted",
+    "success": true
+}
+```
+
 Delete a actor
 
 `localhost:5000/actors/{{ id }}`
+
+**Response:**
+```
+{
+    "message": "1 Actor ID deleted",
+    "success": true
+}
+```
 
 
 ### ERRORS
