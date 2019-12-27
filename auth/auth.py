@@ -10,11 +10,13 @@ AUTH0_DOMAIN = 'dev-fvxwov-3.eu.auth0.com'
 API_AUDIENCE = 'http://localhost:5000'
 ALGORITHMS = ["RS256"]
 
+
 # Error handler
 class AuthError(Exception):
     def __init__(self, error, status_code):
         self.error = error
         self.status_code = status_code
+
 
 def get_token_auth_header():
     auth = request.headers.get("Authorization", None)
@@ -41,6 +43,7 @@ def get_token_auth_header():
 
     token = parts[1]
     return token
+
 
 def verify_decode_jwt():
     token = get_token_auth_header()
@@ -78,11 +81,11 @@ def verify_decode_jwt():
         except Exception:
             raise AuthError({"code": "invalid_header",
                             "description":
-                                "Unable to parse authentication"
-                                " token."}, 401)
+                                "Unable to parse authentication "
+                                "token."}, 401)
 
         _request_ctx_stack.top.current_user = payload
-        
+
 
 def check_permissions(permission, payload):
     if payload:
@@ -94,6 +97,7 @@ def check_permissions(permission, payload):
         'message': 'Permission not found in JWT',
         'error': 401
     }, 401)
+
 
 def requires_auth(permission=''):
     def requires_auth_decorator(f):
